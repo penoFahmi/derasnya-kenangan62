@@ -15,31 +15,35 @@
         body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; background-color: #111827; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .hero-bg {
-            background-image: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.7)), url('images/mylove.jpg');
+            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('images/mylove.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        /* BARU: Style untuk Canvas Animasi Lampion */
-        #lantern-canvas {
+        #firefly-canvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 5; /* Di antara background dan teks */
+            z-index: 5;
         }
         .content-z { position: relative; z-index: 10; }
-        .timeline-item { position: relative; padding-bottom: 2.5rem; padding-left: 1.75rem; border-left: 2px solid #4f46e5; }
-        .timeline-item::before { content: ''; position: absolute; left: -0.6rem; top: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; background-color: #4f46e5; border: 4px solid #111827; }
         
-        @media (min-width: 640px) {
-          .timeline-item { padding-left: 2.5rem; }
-          .timeline-item::before { left: -0.5rem; }
+        .timeline-item { 
+            position: relative; 
+            padding-bottom: 2.5rem; 
+            border-left: 2px solid #d97706; 
+        }
+        
+        @media (min-width: 640px) {}
+        
+        @media (max-width: 768px) {
+            .hero-bg { background-attachment: scroll; }
         }
         .loader {
-            border: 4px solid #3730a3;
-            border-top: 4px solid #818cf8;
+            border: 4px solid #92400e;
+            border-top: 4px solid #fcd34d;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -49,6 +53,37 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* BARU: Style untuk Pemutar Musik */
+        #music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        /* BARU: Style dan Animasi untuk Closing Credits */
+        #credits-container {
+            height: 300px; /* Atur tinggi area credits */
+            overflow: hidden;
+            position: relative;
+        }
+        #credits-list {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            animation: scroll-up 25s linear forwards; /* Durasi animasi */
+            animation-play-state: paused; /* Animasi berhenti sampai terlihat */
+        }
+        
+        .aos-animate #credits-list {
+            animation-play-state: running; /* Animasi berjalan saat section terlihat */
+        }
+
+        @keyframes scroll-up {
+            from { top: 100%; }
+            to { top: -100%; } /* Atur agar scroll sampai hilang */
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300">
@@ -56,25 +91,36 @@
     <header class="bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50 content-z">
         <div class="container mx-auto flex justify-between items-center p-4">
             <h1 class="text-xl md:text-2xl font-bold text-white">KKU 62 Sungai Deras</h1>
-            <nav>
-                <a href="#timeline" class="px-4 hover:text-indigo-400 transition-colors">Timeline</a>
-                <a href="#messages" class="px-4 hover:text-indigo-400 transition-colors">Pesan Kami</a>
-                <a href="#gemini-feature" class="px-4 hover:text-indigo-400 transition-colors">Kapsul Waktu</a>
+            
+            <nav class="hidden md:flex space-x-1">
+                <a href="#timeline" class="px-4 py-2 hover:text-amber-400 transition-colors">Timeline</a>
+                <a href="#messages" class="px-4 py-2 hover:text-amber-400 transition-colors">Pesan Kami</a>
+                <a href="#gemini-feature" class="px-4 py-2 hover:text-amber-400 transition-colors">Kapsul Waktu</a>
             </nav>
+
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/70">
+            <a href="#timeline" class="block py-3 px-4 text-sm hover:bg-gray-700 transition-colors text-center">Timeline</a>
+            <a href="#messages" class="block py-3 px-4 text-sm hover:bg-gray-700 transition-colors text-center">Pesan Kami</a>
+            <a href="#gemini-feature" class="block py-3 px-4 text-sm hover:bg-gray-700 transition-colors text-center">Kapsul Waktu</a>
         </div>
     </header>
 
     <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden hero-bg">
-        <!-- BARU: Canvas untuk animasi lampion ditambahkan kembali -->
-        <canvas id="lantern-canvas"></canvas>
+        <canvas id="firefly-canvas"></canvas>
         <div class="content-z container mx-auto px-4 sm:px-6 py-16 md:py-24" data-aos="zoom-in">
             <h2 class="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-4">
-                Derasnya Kenangan Kita
+                Sebuah Kisah Bernama Kita
             </h2>
             <p class="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-300 mb-8">
-                Setiap detik di Desa Sungai Deras adalah lembaran cerita. Momen tawa, kerja keras, dan kebersamaan Kelompok 62 yang tak akan pernah pudar.
+                Di antara riak Sungai Deras, kita rajut sebuah cerita. Bukan hanya tentang pengabdian, tapi tentang keluarga yang terlahir dari kebersamaan 19 hati.
             </p>
-            <a href="[LINK GOOGLE DRIVE KAMU DI SINI]" target="_blank" class="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-transform hover:scale-105 duration-300 shadow-lg">
+            <a href="[LINK GOOGLE DRIVE KAMU DI SINI]" target="_blank" class="inline-block bg-amber-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-amber-700 transition-transform hover:scale-105 duration-300 shadow-lg">
                 Lihat Semua Kenangan ↗
             </a>
         </div>
@@ -82,28 +128,37 @@
 
     <section id="timeline" class="py-16 md:py-20 bg-gray-900/30">
         <div class="container mx-auto px-4 sm:px-6">
-            <h3 class="text-4xl font-serif font-bold text-center mb-16 text-white" data-aos="fade-up">Jejak Kenangan Kami</h3>
+            <h3 class="text-4xl font-serif font-bold text-center mb-20 text-white" data-aos="fade-up">Jejak Kenangan Kami</h3>
             <div class="max-w-3xl mx-auto">
-                 <div class="timeline-item" data-aos="fade-left">
-                    <div class="ml-4">
-                        <time class="mb-1 text-sm font-normal leading-none text-indigo-400">[Tanggal Mulai]</time>
-                        <h4 class="text-lg font-semibold text-white">Hari Pertama Tiba</h4>
-                        <p class="mb-4 text-base font-normal text-gray-400">Awal dari perjalanan kami, disambut dengan hangat oleh warga desa.</p>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
+                        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg transition-all duration-300 hover:shadow-amber-500/20 hover:ring-amber-500/50 hover:scale-[1.02]">
+                        <time class="mb-1 text-sm font-normal leading-none text-amber-400">28 Juli 2025</time>
+                        <h4 class="text-xl font-semibold text-white mt-1">Hari Pertama Tiba</h4>
+                        <p class="mt-2 text-base font-normal text-gray-400">Langkah pertama di tanah yang asing, namun disambut kehangatan yang terasa seperti pulang. Di sinilah babak baru kita dimulai.</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
-                    <div class="ml-4">
-                        <time class="mb-1 text-sm font-normal leading-none text-indigo-400">[Tanggal Kegiatan]</time>
-                        <h4 class="text-lg font-semibold text-white">Program Kerja Utama</h4>
-                        <p class="text-gray-400">Mulai dari penyuluhan, gotong royong, hingga mengajar di sekolah lokal.</p>
-                        <img src="https://placehold.co/600x400/1a202c/FFFFFF?text=Ganti+dengan+images/foto-kegiatan.jpg" alt="Foto Program Kerja" class="mt-4 rounded-lg shadow-lg">
+                     <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
+                        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg transition-all duration-300 hover:shadow-amber-500/20 hover:ring-amber-500/50 hover:scale-[1.02]">
+                         <time class="mb-1 text-sm font-normal leading-none text-amber-400">Agustus 2025</time>
+                        <h4 class="text-xl font-semibold text-white mt-1">Menjalin Cerita Bersama</h4>
+                        <p class="mt-2 text-base font-normal text-gray-400">Siang diisi pengabdian, malam diramaikan gelak tawa. Dari ruang kelas hingga posko sederhana, setiap sudut desa menjadi saksi bisu ikatan kita yang kian erat.</p>
+                        <img src="https://placehold.co/600x400/1a202c/FFFFFF?text=Ganti+dengan+images/foto-kegiatan.jpg" alt="Foto Program Kerja" class="mt-4 rounded-lg shadow-md">
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
-                    <div class="ml-4">
-                        <time class="mb-1 text-sm font-normal leading-none text-indigo-400">[Tanggal Perpisahan]</time>
-                        <h4 class="text-lg font-semibold text-white">Malam Perpisahan</h4>
-                        <p class="text-gray-400">Sulit untuk tidak meneteskan air mata saat berpamitan dengan warga yang sudah seperti keluarga sendiri.</p>
+                    <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
+                        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg transition-all duration-300 hover:shadow-amber-500/20 hover:ring-amber-500/50 hover:scale-[1.02]">
+                        <time class="mb-1 text-sm font-normal leading-none text-amber-400">29 Agustus 2025</time>
+                        <h4 class="text-xl font-semibold text-white mt-1">Janji untuk Kembali</h4>
+                        <p class="mt-2 text-base font-normal text-gray-400">Ada rindu yang mulai berbisik bahkan sebelum kaki melangkah pergi. Perpisahan ini bukanlah akhir, melainkan sebuah jeda sebelum kita merangkai cerita baru.</p>
                     </div>
                 </div>
             </div>
@@ -112,20 +167,29 @@
 
     <section id="messages" class="py-16 md:py-20">
         <div class="container mx-auto px-4 sm:px-6">
-            <h3 class="text-4xl font-serif font-bold text-center mb-16 text-white" data-aos="fade-up">Pesan dari Hati Kami</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <h3 class="text-4xl font-serif font-bold text-center mb-16 text-white" data-aos="fade-up">Goresan Rindu dari Kami</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://placehold.co/200x200/4f46e5/FFFFFF?text=images/fotomu.jpg" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
+                    <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/fotomu.jpg" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Nama Kamu</h5>
-                    <p class="text-sm text-indigo-400 mb-4">Ketua Kelompok</p>
-                    <p class="text-gray-400 italic">"Terima kasih untuk satu bulan yang tak terlupakan. Kalian semua hebat!"</p>
+                    <p class="text-sm text-amber-400 mb-4">Ketua Kelompok</p>
+                    <p class="text-gray-400 italic">"Satu bulan yang terasa sekejap, namun kenangannya akan abadi. Terima kasih telah menjadi keluarga terbaik. Kalian luar biasa."</p>
                 </div>
-                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://placehold.co/200x200/4f46e5/FFFFFF?text=images/fototeman.jpg" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
+                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="150">
+                    <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/fototeman.jpg" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Nama Teman</h5>
                     <p class="text-sm text-gray-500 mb-4">Anggota</p>
-                    <p class="text-gray-400 italic">"Pengalaman KKN ini akan selalu jadi cerita terbaik. Sampai jumpa lagi, tim!"</p>
+                    <p class="text-gray-400 italic">"Aku menemukan rumah di antara canda tawa kalian. Sungai Deras akan selalu menjadi tempatku untuk pulang. Sampai jumpa lagi, keluarga keduaku."</p>
                 </div>
+                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=.../namafoto.jpg" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
+                    <h5 class="font-bold text-white text-xl">Nama Teman Lain</h5>
+                    <p class="text-sm text-gray-500 mb-4">Anggota</p>
+                    <p class="text-gray-400 italic">"Setiap detiknya berharga. Bangga jadi bagian dari kelompok 62!"</p>
+                </div>
+                 <div class="flex items-center justify-center bg-gray-800/30 p-6 rounded-xl shadow-lg text-center border-2 border-dashed border-gray-700" data-aos="fade-up" data-aos-delay="250">
+                     <p class="text-gray-500 italic">Setiap dari 19 hati memiliki cerita uniknya sendiri...</p>
+                 </div>
             </div>
         </div>
     </section>
@@ -134,12 +198,12 @@
         <div class="container mx-auto px-4 sm:px-6 text-center">
             <h3 class="text-4xl font-serif font-bold text-center mb-4 text-white" data-aos="fade-up">✨ Kapsul Waktu Digital</h3>
             <p class="max-w-2xl mx-auto text-gray-400 mb-10" data-aos="fade-up" data-aos-delay="100">
-                Masukkan beberapa kata kunci kenanganmu, dan biarkan AI merangkainya menjadi sebuah cerita puitis.
+                Ada kenangan yang terlalu indah untuk dilupakan. Bisikkan beberapa kata, dan biarkan keajaiban merangkainya kembali menjadi sebuah cerita yang menghangatkan hati.
             </p>
             <div class="max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="200">
                 <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                    <input type="text" id="keywords" placeholder="Contoh: api unggun, gitar, malam terakhir" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
-                    <button id="generate-story" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-transform hover:scale-105 duration-300 shadow-lg flex-shrink-0">
+                    <input type="text" id="keywords" placeholder="Contoh: api unggun, gitar, malam terakhir" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
+                    <button id="generate-story" class="bg-amber-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-700 transition-transform hover:scale-105 duration-300 shadow-lg flex-shrink-0">
                         Rangkai Cerita
                     </button>
                 </div>
@@ -154,116 +218,172 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 mt-16">
+    <!-- BARU: Bagian Closing Credits -->
+    <section id="credits" class="py-16 md:py-20 bg-black">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <h3 class="text-3xl font-serif font-bold text-center mb-10 text-white" data-aos="fade-up">19 Hati, 1 Cerita</h3>
+            <div id="credits-container" data-aos="fade-up">
+                <div id="credits-list" class="text-gray-400 text-lg space-y-3">
+                    <p>Nama Anggota 1</p>
+                    <p>Nama Anggota 2</p>
+                    <p>Nama Anggota 3</p>
+                    <p>Nama Anggota 4</p>
+                    <p>Nama Anggota 5</p>
+                    <p>Nama Anggota 6</p>
+                    <p>Nama Anggota 7</p>
+                    <p>Nama Anggota 8</p>
+                    <p>Nama Anggota 9</p>
+                    <p>Nama Anggota 10</p>
+                    <p>Nama Anggota 11</p>
+                    <p>Nama Anggota 12</p>
+                    <p>Nama Anggota 13</p>
+                    <p>Nama Anggota 14</p>
+                    <p>Nama Anggota 15</p>
+                    <p>Nama Anggota 16</p>
+                    <p>Nama Anggota 17</p>
+                    <p>Nama Anggota 18</p>
+                    <p>Nama Anggota 19</p>
+                    <br>
+                    <p class="text-amber-400 font-bold">Kelompok 62</p>
+                    <p class="text-sm">KKU Sungai Deras 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900">
         <div class="container mx-auto py-6 text-center text-gray-500">
-            <p>&copy; 2025 KKU Kelompok 62. Dirangkai dengan rindu ❤.</p>
+            <p>&copy; 2025 | Untuk Selamanya, Kelompok 62. Dirangkai dengan rindu yang tak pernah padam ❤.</p>
         </div>
     </footer>
+
+    <!-- BARU: Pemutar Musik -->
+    <audio id="background-music" loop>
+        <source src="kenangan.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    <div id="music-player">
+        <button id="play-pause-btn" class="w-12 h-12 bg-amber-600/50 text-white rounded-full flex items-center justify-center backdrop-blur-sm shadow-lg hover:bg-amber-600/80 transition">
+            <!-- Ikon akan diubah oleh JavaScript -->
+            <svg id="play-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm11.25 6.75a.75.75 0 000-1.5H8.75a.75.75 0 000 1.5h6.5z"></path></svg>
+            <svg id="pause-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M5.75 4.5a.75.75 0 00-.75.75v10.5a.75.75 0 001.5 0V5.25a.75.75 0 00-.75-.75zM14.25 4.5a.75.75 0 00-.75.75v10.5a.75.75 0 001.5 0V5.25a.75.75 0 00-.75-.75z"></path></svg>
+        </button>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // --- BARU: Script untuk Animasi Lampion Terbang ---
-        const canvas = document.getElementById('lantern-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let lanterns = [];
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 
-        function initLanterns() {
-            lanterns = [];
-            let numberOfLanterns = (canvas.width * canvas.height) / 18000;
-            for (let i = 0; i < numberOfLanterns; i++) {
-                lanterns.push({
-                    x: Math.random() * canvas.width,
-                    y: canvas.height + Math.random() * canvas.height,
-                    radius: Math.random() * 20 + 15,
-                    speed: Math.random() * 0.5 + 0.2,
-                    color: `rgba(255, 165, 0, ${Math.random() * 0.3 + 0.2})`
-                });
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenuLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+        const canvas = document.getElementById('firefly-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let fireflies = [];
+        const numberOfFireflies = 19; 
+
+        function initFireflies() {
+            fireflies = [];
+            for (let i = 0; i < numberOfFireflies; i++) {
+                fireflies.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 2 + 1, vx: Math.random() * 1 - 0.5, vy: Math.random() * 1 - 0.5, opacity: Math.random() * 0.5 + 0.3 });
             }
         }
 
-        function drawLantern(lantern) {
+        function drawFirefly(f) {
             ctx.beginPath();
-            ctx.arc(lantern.x, lantern.y, lantern.radius, 0, Math.PI * 2);
-            ctx.fillStyle = lantern.color;
-            ctx.shadowColor = 'orange';
-            ctx.shadowBlur = 30;
+            const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.radius * 2);
+            g.addColorStop(0, `rgba(252, 211, 77, ${f.opacity})`);
+            g.addColorStop(1, 'rgba(252, 211, 77, 0)');
+            ctx.fillStyle = g;
+            ctx.arc(f.x, f.y, f.radius * 2, 0, Math.PI * 2);
             ctx.fill();
         }
 
-        function updateAndDrawLanterns() {
+        function updateAndDrawFireflies() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            lanterns.forEach(lantern => {
-                lantern.y -= lantern.speed;
-                if (lantern.y + lantern.radius < 0) {
-                    lantern.y = canvas.height + lantern.radius;
-                    lantern.x = Math.random() * canvas.width;
-                }
-                drawLantern(lantern);
+            fireflies.forEach(f => {
+                f.x += f.vx; f.y += f.vy;
+                f.opacity += (Math.random() - 0.5) * 0.1;
+                if(f.opacity > 1) f.opacity = 1; if(f.opacity < 0.2) f.opacity = 0.2;
+                if (f.x < 0 || f.x > canvas.width) f.vx *= -1;
+                if (f.y < 0 || f.y > canvas.height) f.vy *= -1;
+                drawFirefly(f);
             });
-            requestAnimationFrame(updateAndDrawLanterns);
+            requestAnimationFrame(updateAndDrawFireflies);
         }
 
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initLanterns();
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            initFireflies();
         });
 
-        initLanterns();
-        updateAndDrawLanterns();
+        initFireflies();
+        updateAndDrawFireflies();
+
+        // BARU: Logika untuk pemutar musik
+        const music = document.getElementById('background-music');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        let isPlaying = false;
+        
+        // Ganti ikon pause menjadi play
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+        
+        function togglePlay() {
+            if (isPlaying) {
+                music.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            } else {
+                music.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            }
+            isPlaying = !isPlaying;
+        }
+        playPauseBtn.addEventListener('click', togglePlay);
+        // Memulai musik setelah interaksi pertama pengguna
+        document.body.addEventListener('click', () => {
+            if(!isPlaying) {
+                // music.play();
+                // isPlaying = true;
+                // playIcon.classList.add('hidden');
+                // pauseIcon.classList.remove('hidden');
+            }
+        }, { once: true });
 
 
-        // --- SCRIPT UNTUK FITUR GEMINI AI ---
         const generateButton = document.getElementById('generate-story');
         const keywordsInput = document.getElementById('keywords');
         const storyResultDiv = document.getElementById('story-result');
         const storyLoaderDiv = document.getElementById('story-loader');
         const storyErrorDiv = document.getElementById('story-error');
         
-        const apiKey = ""; // Disediakan oleh environment
+        const apiKey = "";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
         async function callGeminiAPI(prompt, retries = 3, delay = 1000) {
             const systemPrompt = "Kamu adalah seorang penulis puitis yang bertugas merangkai kenangan indah menjadi sebuah cerita pendek yang nostalgia dan menyentuh. Gunakan bahasa yang indah dan bangkitkan emosi kebersamaan dalam 2-3 kalimat.";
-
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                },
-            };
-            
+            const payload = { contents: [{ parts: [{ text: prompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] }, };
             for (let i = 0; i < retries; i++) {
                 try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-
+                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const result = await response.json();
                     const candidate = result.candidates?.[0];
-                    if (candidate && candidate.content?.parts?.[0]?.text) {
-                        return candidate.content.parts[0].text;
-                    } else {
-                        throw new Error("Respons dari API tidak valid.");
-                    }
+                    if (candidate && candidate.content?.parts?.[0]?.text) { return candidate.content.parts[0].text; } 
+                    else { throw new Error("Respons dari API tidak valid."); }
                 } catch (error) {
                     console.error(`Attempt ${i + 1} failed:`, error);
-                    if (i < retries - 1) {
-                        await new Promise(res => setTimeout(res, delay));
-                        delay *= 2; // Exponential backoff
-                    } else {
-                        throw error;
-                    }
+                    if (i < retries - 1) { await new Promise(res => setTimeout(res, delay)); delay *= 2; } 
+                    else { throw error; }
                 }
             }
         }
@@ -275,26 +395,22 @@
                 storyErrorDiv.classList.remove('hidden');
                 return;
             }
-
             storyResultDiv.classList.add('hidden');
             storyLoaderDiv.classList.remove('hidden');
             storyErrorDiv.classList.add('hidden');
             generateButton.disabled = true;
             generateButton.textContent = 'Merangkai...'
-
             try {
-                const userPrompt = `Tuliskan sebuah paragraf kenangan KKN yang puitis berdasarkan kata kunci ini: "${keywords}".`;
+                const userPrompt = `Tuliskan sebuah paragraf kenangan KKU yang puitis berdasarkan kata kunci ini: "${keywords}".`;
                 const story = await callGeminiAPI(userPrompt);
-                
                 storyResultDiv.innerHTML = story.replace(/\n/g, '<br>');
                 storyResultDiv.classList.remove('italic', 'text-gray-400');
                 storyResultDiv.classList.add('text-white');
-
             } catch (error) {
                 console.error("Gagal mengambil cerita dari Gemini:", error);
                 storyErrorDiv.textContent = 'Maaf, terjadi kesalahan saat merangkai cerita. Coba lagi beberapa saat.';
                 storyErrorDiv.classList.remove('hidden');
-                storyResultDiv.innerHTML = 'Cerita kenanganmu akan muncul di sini...'; // Reset
+                storyResultDiv.innerHTML = 'Cerita kenanganmu akan muncul di sini...';
             } finally {
                 storyLoaderDiv.classList.add('hidden');
                 storyResultDiv.classList.remove('hidden');
