@@ -437,33 +437,69 @@
         initFireflies();
         updateAndDrawFireflies();
 
+        // --- PERBAIKAN LOGIKA MUSIK ---
         const music = document.getElementById('background-music');
         const playPauseBtn = document.getElementById('play-pause-btn');
         const playIcon = document.getElementById('play-icon');
         const pauseIcon = document.getElementById('pause-icon');
         const musicHint = document.getElementById('music-hint');
-        let isPlaying = false;
         
-        function togglePlay() {
-            if (isPlaying) {
-                music.pause();
-                playIcon.classList.remove('hidden');
-                pauseIcon.classList.add('hidden');
-            } else {
-                music.play().catch(error => console.log("Pemutaran otomatis diblokir oleh browser. Diperlukan interaksi pengguna."));
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-            }
-            isPlaying = !isPlaying;
+        // Langsung memantau status audio
+        music.addEventListener('play', () => {
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
             musicHint.style.display = 'none';
-        }
-        playPauseBtn.addEventListener('click', togglePlay);
+        });
 
+        music.addEventListener('pause', () => {
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        });
+
+        // Tombol play/pause utama
+        playPauseBtn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        });
+
+        // Mencoba autoplay, dan fallback ke interaksi pengguna
         document.body.addEventListener('click', () => {
-            if(!isPlaying && music.paused) {
-                togglePlay();
+            if(music.paused) {
+                music.play().catch(error => console.log("Gagal memulai musik. Diperlukan interaksi via tombol."));
             }
         }, { once: true });
+
+
+        // const music = document.getElementById('background-music');
+        // const playPauseBtn = document.getElementById('play-pause-btn');
+        // const playIcon = document.getElementById('play-icon');
+        // const pauseIcon = document.getElementById('pause-icon');
+        // const musicHint = document.getElementById('music-hint');
+        // let isPlaying = false;
+        
+        // function togglePlay() {
+        //     if (isPlaying) {
+        //         music.pause();
+        //         playIcon.classList.remove('hidden');
+        //         pauseIcon.classList.add('hidden');
+        //     } else {
+        //         music.play().catch(error => console.log("Pemutaran otomatis diblokir oleh browser. Diperlukan interaksi pengguna."));
+        //         playIcon.classList.add('hidden');
+        //         pauseIcon.classList.remove('hidden');
+        //     }
+        //     isPlaying = !isPlaying;
+        //     musicHint.style.display = 'none';
+        // }
+        // playPauseBtn.addEventListener('click', togglePlay);
+
+        // document.body.addEventListener('click', () => {
+        //     if(!isPlaying && music.paused) {
+        //         togglePlay();
+        //     }
+        // }, { once: true });
 
 
         const generateButton = document.getElementById('generate-story');
