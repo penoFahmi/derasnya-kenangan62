@@ -164,6 +164,9 @@
         </div>
     </section>
 
+    <!-- ================================================================= -->
+    <!-- PERUBAHAN TOTAL PADA BAGIAN PESAN DIMULAI (LENGKAP 19 ANGGOTA)    -->
+    <!-- ================================================================= -->
     <section id="messages" class="py-16 md:py-20">
         <div class="container mx-auto px-4 sm:px-6">
             <h3 class="text-4xl font-serif font-bold text-center mb-16 text-white" data-aos="fade-up">Goresan Rindu dari Kami</h3>
@@ -367,9 +370,9 @@
         </div>
     </footer>
 
-    <audio id="background-music" loop autoplay>
+    <audio id="background-music" loop>
         <!-- PERBAIKAN: Mengganti ke file audio lokal -->
-        <source src="audio/kenangan.mp3" type="audio/mpeg">
+        <source src="audio/Banda-Neira-menampilkan-Gardika-Gigih-Sampai-Jadi-Debu.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
     <div id="music-player">
@@ -434,38 +437,31 @@
         initFireflies();
         updateAndDrawFireflies();
 
-        // --- PERBAIKAN LOGIKA MUSIK ---
         const music = document.getElementById('background-music');
         const playPauseBtn = document.getElementById('play-pause-btn');
         const playIcon = document.getElementById('play-icon');
         const pauseIcon = document.getElementById('pause-icon');
         const musicHint = document.getElementById('music-hint');
+        let isPlaying = false;
         
-        // Langsung memantau status audio
-        music.addEventListener('play', () => {
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
-            musicHint.style.display = 'none';
-        });
-
-        music.addEventListener('pause', () => {
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
-        });
-
-        // Tombol play/pause utama
-        playPauseBtn.addEventListener('click', () => {
-            if (music.paused) {
-                music.play();
-            } else {
+        function togglePlay() {
+            if (isPlaying) {
                 music.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            } else {
+                music.play().catch(error => console.log("Pemutaran otomatis diblokir oleh browser. Diperlukan interaksi pengguna."));
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
             }
-        });
+            isPlaying = !isPlaying;
+            musicHint.style.display = 'none';
+        }
+        playPauseBtn.addEventListener('click', togglePlay);
 
-        // Mencoba autoplay, dan fallback ke interaksi pengguna
         document.body.addEventListener('click', () => {
-            if(music.paused) {
-                music.play().catch(error => console.log("Gagal memulai musik. Diperlukan interaksi via tombol."));
+            if(!isPlaying && music.paused) {
+                togglePlay();
             }
         }, { once: true });
 
