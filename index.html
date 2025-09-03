@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenangan KKU Sungai Deras</title>
+    
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Memuat Font dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Memuat AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Menggunakan font Poppins & Playfair Display */
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #111827; /* Warna dasar gelap */
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Efek gradasi pada background */
+        .gradient-bg {
+            background-color: #111827;
+            background-image: radial-gradient(circle at 1% 1%, rgba(76, 29, 149, 0.3) 0%, transparent 40%),
+                              radial-gradient(circle at 99% 99%, rgba(139, 92, 246, 0.2) 0%, transparent 40%);
+        }
+        /* Styling untuk canvas partikel */
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .content-z {
+            position: relative;
+            z-index: 10;
+        }
+        /* Styling untuk Timeline */
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+            padding-left: 2.5rem;
+            border-left: 2px solid #4f46e5;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            border: 4px solid #111827;
+        }
+    </style>
+</head>
+<body class="gradient-bg text-gray-300">
+
+    <!-- Header / Navbar -->
+    <header class="bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50 content-z">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-xl md:text-2xl font-bold text-white">KKN [Nama Desa/Lokasi]</h1>
+            <nav>
+                <a href="#timeline" class="px-4 hover:text-indigo-400 transition-colors">Timeline</a>
+                <a href="#messages" class="px-4 hover:text-indigo-400 transition-colors">Pesan Kami</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Bagian Utama / Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        <canvas id="particles-canvas"></canvas>
+        <div class="content-z container mx-auto px-6 py-16 md:py-24" data-aos="zoom-in">
+            <h2 class="text-5xl md:text-7xl font-serif font-bold text-white mb-4">
+                Sebuah Kisah Bernama Pengabdian
+            </h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400">
+                Setiap detik di [Nama Desa] adalah lembaran cerita. Momen tawa, kerja keras, dan kebersamaan yang tak akan pernah pudar.
+            </p>
+        </div>
+    </section>
+
+    <!-- Timeline Kenangan -->
+    <section id="timeline" class="py-16 md:py-20 bg-gray-900/30">
+        <div class="container mx-auto px-6">
+            <h3 class="text-4xl font-serif font-bold text-center mb-16 text-white" data-aos="fade-up">Jejak Kenangan Kami</h3>
+            <div class="max-w-3xl mx-auto">
+                
+                <!-- Item Timeline 1 -->
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="ml-4">
+                        <time class="mb-1 text-sm font-normal leading-none text-indigo-400">[Tanggal Mulai]</time>
+                        <h4 class="text-lg font-semibold text-white">Hari Pertama Tiba</h4>
+                        <p class="mb-4 text-base font-normal text-gray-400">Awal dari perjalanan kami, disambut dengan hangat oleh warga desa. Perasaan canggung dan semangat bercampur aduk.</p>
+                    </div>
+                </div>
+
+                <!-- Item Timeline 2 -->
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
+                    <div class="ml-4">
+                        <time class="mb-1 text-sm font-normal leading-none text-indigo-400">[Tanggal Kegiatan]</time>
+                        <h4 class="text-lg font-semibold text-white">Program Kerja Utama</h4>
+                        <p class="text-gray-400">Mulai dari penyuluhan, gotong royong, hingga mengajar di sekolah lokal. Setiap hari adalah pembelajaran baru bagi kami.</p>
+                        <!-- Ganti 'src' dengan link foto kamu -->
+                        <img src="https://placehold.co/600x400/1a202c/FFFFFF?text=Foto+Program" alt="Foto Program Kerja" class="mt-4 rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+                <!-- Item Timeline 3 -->
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="ml-4">
+                        <time class="mb-1 text-sm font-normal leading-none text-indigo-400">[Tanggal Perpisahan]</time>
+                        <h4 class="text-lg font-semibold text-white">Malam Perpisahan</h4>
+                        <p class="text-gray-400">Pentas seni dan makan bersama menjadi penutup. Sulit untuk tidak meneteskan air mata saat berpamitan.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pesan dari Hati -->
+    <section id="messages" class="py-16 md:py-20">
+        <div class="container mx-auto px-6">
+            <h3 class="text-4xl font-serif font-bold text-center mb-16 text-white" data-aos="fade-up">Pesan dari Hati Kami</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Kartu Pesan 1 -->
+                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://placehold.co/200x200/4f46e5/FFFFFF?text=Foto" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
+                    <h5 class="font-bold text-white text-xl">Nama Kamu</h5>
+                    <p class="text-sm text-indigo-400 mb-4">Ketua Kelompok</p>
+                    <p class="text-gray-400 italic">"Tuliskan kesan dan pesan singkatmu di sini. Contoh: Pengalaman yang luar biasa, terima kasih tim!"</p>
+                </div>
+
+                <!-- Kartu Pesan 2 -->
+                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://placehold.co/200x200/4f46e5/FFFFFF?text=Foto" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
+                    <h5 class="font-bold text-white text-xl">Nama Teman</h5>
+                    <p class="text-sm text-gray-500 mb-4">Anggota</p>
+                    <p class="text-gray-400 italic">"Tuliskan kesan dan pesan singkat temanmu di sini. Minta mereka untuk mengirimkannya padamu."</p>
+                </div>
+
+                <!-- Kartu Pesan 3 -->
+                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://placehold.co/200x200/4f46e5/FFFFFF?text=Foto" alt="Foto Anggota" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
+                    <h5 class="font-bold text-white text-xl">Nama Teman</h5>
+                    <p class="text-sm text-gray-500 mb-4">Anggota</p>
+                    <p class="text-gray-400 italic">"Website ini akan menjadi pengingat abadi tentang kebersamaan kita. Jangan lupakan momen ini ya!"</p>
+                </div>
+                
+                <!-- Tambahkan kartu pesan lainnya di sini -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 mt-16">
+        <div class="container mx-auto py-6 text-center text-gray-500">
+            <p>&copy; 2025 KKN Kelompok [Nama Kelompok]. Dirangkai dengan rindu ❤.</p>
+        </div>
+    </footer>
+
+    <!-- Script untuk AOS dan Partikel -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Script untuk Efek Partikel Sederhana
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(167, 139, 250, 0.5)';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0,0,innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            init();
+        });
+    </script>
+</body>
+</html>
