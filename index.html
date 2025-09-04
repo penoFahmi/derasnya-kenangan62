@@ -791,7 +791,7 @@
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         async function callGeminiAPI(prompt, retries = 3, delay = 1000) {
-            const systemPrompt = "Kamu adalah seorang penulis puitis yang bertugas merangkai kenangan indah menjadi sebuah cerita pendek yang nostalgia dan menyentuh. Gunakan bahasa yang indah dan bangkitkan emosi kebersamaan dalam 2-3 kalimat.";
+            const systemPrompt = "Kamu adalah seorang penulis puitis yang bertugas merangkai kenangan indah menjadi sebuah cerita pendek yang nostalgia dan menyentuh pada masa kku kelompok 62 desa sungai deras yang penuh kenangan di posko. Gunakan bahasa yang indah dan bangkitkan emosi kebersamaan dalam 2-3 kalimat.";
             const payload = { contents: [{ parts: [{ text: prompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] }, };
             for (let i = 0; i < retries; i++) {
                 try {
