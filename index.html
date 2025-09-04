@@ -142,6 +142,27 @@
             transform: translateY(0);
             opacity: 1;
         }
+        /* === CSS BARU UNTUK SLIDESHOW FOTO === */
+        .slideshow-container {
+            display: flex;
+            overflow-x: auto;
+            /* Garis ini adalah "sihir" utamanya */
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* Untuk scroll mulus di iOS */
+            scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+        }
+        /* Sembunyikan scrollbar di Chrome, Safari, Opera */
+        .slideshow-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            scroll-snap-align: start;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300">
@@ -185,46 +206,7 @@
         </div>
     </section>
 
-    <!-- <section id="timeline" class="py-16 md:py-20 bg-gray-900/30">
-        <div class="container mx-auto px-4 sm:px-6">
-            <h3 class="text-4xl font-serif font-bold text-center mb-20 text-white" data-aos="fade-up">Jejak Kenangan Kami</h3>
-            <div class="max-w-3xl mx-auto">
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
-                        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    </div>
-                    <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg transition-all duration-300 hover:shadow-amber-500/20 hover:ring-amber-500/50 hover:scale-[1.02]">
-                        <time class="mb-1 text-sm font-normal leading-none text-amber-400">28 Juli 2025</time>
-                        <h4 class="text-xl font-semibold text-white mt-1">Hari Pertama Tiba</h4>
-                        <p class="mt-2 text-base font-normal text-gray-400">Langkah pertama di tanah yang asing, namun disambut kehangatan yang terasa seperti pulang. Di sinilah babak baru kita dimulai.</p>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
-                     <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
-                        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    </div>
-                    <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg transition-all duration-300 hover:shadow-amber-500/20 hover:ring-amber-500/50 hover:scale-[1.02]">
-                         <time class="mb-1 text-sm font-normal leading-none text-amber-400">Agustus 2025</time>
-                        <h4 class="text-xl font-semibold text-white mt-1">Menjalin Cerita Bersama</h4>
-                        <p class="mt-2 text-base font-normal text-gray-400">Siang diisi pengabdian, malam diramaikan gelak tawa. Dari ruang kelas hingga posko sederhana, setiap sudut desa menjadi saksi bisu ikatan kita yang kian erat.</p>
-                        <img src="https://placehold.co/600x400/1a202c/FFFFFF?text=Ganti+dengan+images/foto-kegiatan.jpg" alt="Foto Program Kerja" class="mt-4 rounded-lg shadow-md">
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
-                    <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
-                        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    </div>
-                    <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg transition-all duration-300 hover:shadow-amber-500/20 hover:ring-amber-500/50 hover:scale-[1.02]">
-                        <time class="mb-1 text-sm font-normal leading-none text-amber-400">29 Agustus 2025</time>
-                        <h4 class="text-xl font-semibold text-white mt-1">Janji untuk Kembali</h4>
-                        <p class="mt-2 text-base font-normal text-gray-400">Ada rindu yang mulai berbisik bahkan sebelum kaki melangkah pergi. Perpisahan ini bukanlah akhir, melainkan sebuah jeda sebelum kita merangkai cerita baru.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-<section id="timeline" class="py-16 md:py-20 bg-gray-900/30 overflow-x-hidden">
+<!-- <section id="timeline" class="py-16 md:py-20 bg-gray-900/30 overflow-x-hidden">
     <div class="container mx-auto px-4 sm:px-6">
         <h3 class="text-4xl font-serif font-bold text-center mb-20 text-white" data-aos="fade-up">Jejak Kenangan Kami</h3>
         <div class="max-w-3xl mx-auto">
@@ -305,6 +287,136 @@
                                     <h5 class="text-lg font-semibold text-amber-300">🌙 Malam Kebersamaan: Berbagi Cerita Hati</h5>
                                     <p class="mt-1 text-gray-400">Di bawah jutaan bintang, diiringi suara jangkrik, kita bukan lagi teman KKN, tapi keluarga. Momen saat kita berbagi cerita personal dan saling menguatkan.</p>
                                     <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+MALAM+SYAHDU" alt="Foto Malam Syahdu" class="mt-4 rounded-lg shadow-md">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button class="tombol-kenangan" data-target="#kenangan-3" data-type="lanjut">Lihat Akhir Cerita →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="kenangan-3" class="timeline-item kenangan-container kenangan-terkunci">
+                <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
+                    <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+                <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg timeline-card-hover">
+                    <time class="mb-1 text-sm font-normal leading-none text-amber-400">29 Agustus 2025</time>
+                    <h4 class="text-xl font-semibold text-white mt-1">Janji untuk Kembali</h4>
+                    <p class="mt-2 text-base font-normal text-gray-400">Ada rindu yang mulai berbisik bahkan sebelum kaki melangkah pergi. Perpisahan ini bukanlah akhir, melainkan sebuah jeda sebelum kita merangkai cerita baru.</p>
+                    <button id="tombol-ulangi" class="tombol-kenangan tersembunyi">💖 Ulangi Perjalanan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+<section id="timeline" class="py-16 md:py-20 bg-gray-900/30 overflow-x-hidden">
+    <div class="container mx-auto px-4 sm:px-6">
+        <h3 class="text-4xl font-serif font-bold text-center mb-20 text-white" data-aos="fade-up">Jejak Kenangan Kami</h3>
+        <div class="max-w-3xl mx-auto">
+            
+            <div id="kenangan-1" class="timeline-item kenangan-container">
+                <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900 timeline-pulse">
+                    <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+                <div class="ml-10 bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg timeline-card-hover">
+                    <time class="mb-1 text-sm font-normal leading-none text-amber-400">28 Juli 2025</time>
+                    <h4 class="text-xl font-semibold text-white mt-1">Hari Pertama Tiba</h4>
+                    <p class="mt-2 text-base font-normal text-gray-400">Langkah pertama di tanah yang asing, namun disambut kehangatan yang terasa seperti pulang. Di sinilah babak baru kita dimulai.</p>
+                    <button class="tombol-kenangan" data-target="#kenangan-2" data-type="pilihan">Buka Bab Berikutnya →</button>
+                </div>
+            </div>
+            
+            <div id="kenangan-2" class="timeline-item kenangan-container kenangan-terkunci">
+                 <div class="absolute w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center -left-4 top-0 ring-4 ring-gray-900">
+                    <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+                <div class="ml-10">
+                    <div class="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl ring-1 ring-white/10 shadow-lg timeline-card-hover">
+                        <time class="mb-1 text-sm font-normal leading-none text-amber-400">Agustus 2025</time>
+                        <h4 class="text-xl font-semibold text-white mt-1">Menjalin Cerita Bersama</h4>
+                        <p class="mt-2 text-base font-normal text-gray-400">Siang diisi pengabdian, malam diramaikan gelak tawa. Setiap sudut desa menjadi saksi bisu ikatan kita yang kian erat.</p>
+                    </div>
+                    
+                    <div id="pilihan-emosi-container" class="pilihan-emosi-container">
+                        <div class="bg-gray-800/50 p-4 rounded-lg text-center">
+                            <p class="text-amber-300 font-semibold mb-3">Bagaimana kamu mengenang bab ini?</p>
+                            <div class="flex flex-col sm:flex-row justify-center gap-3">
+                                <button class="tombol-kenangan" data-emosi="suka-cita">🎉 Penuh Suka Cita</button>
+                                <button class="tombol-kenangan" data-emosi="mengharukan">💧 Mengharukan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sub-timeline-konten" class="sub-timeline-konten">
+                        <div id="suka-cita-content" class="hidden">
+                            <div class="mt-8 ml-4 pl-8 border-l-2 border-amber-600/50 space-y-10 relative">
+                                <div class="relative">
+                                    <div class="absolute w-4 h-4 bg-gray-700 rounded-full -left-[41px] top-1 border-2 border-amber-500"></div>
+                                    <h5 class="text-lg font-semibold text-amber-300">☀️ Program Mengajar: Energi Tak Terbatas!</h5>
+                                    <p class="mt-1 text-gray-400">Bukan cuma belajar, tapi kita ikut berlarian dan tertawa lepas bersama mereka! Energi anak-anak desa benar-benar tak ada habisnya!</p>
+                                    <div class="slideshow-container mt-4 rounded-lg shadow-md">
+                                        <img src="images/timeline/sekolah 1.jpg" alt="Foto Ceria Mengajar 1" class="slide">
+                                        <img src="images/timeline/sekolah 2.JPG" alt="Foto Ceria Mengajar 2" class="slide">
+                                        <img src="images/timeline/sekolah 3.jpg" alt="Foto Ceria Mengajar 1" class="slide">
+                                        <img src="images/timeline/sekolah 4.JPG" alt="Foto Ceria Mengajar 2" class="slide">                                        
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute w-4 h-4 bg-gray-700 rounded-full -left-[41px] top-1 border-2 border-amber-500"></div>
+                                    <h5 class="text-lg font-semibold text-amber-300">😂 Gotong Royong: Lebih Banyak Bercanda!</h5>
+                                    <p class="mt-1 text-gray-400">Katanya kerja bakti, tapi rasanya lebih banyak canda daripada kerja. Setiap angkat batu diiringi celetukan lucu yang bikin lupa lelah.</p>
+                                    <div class="slideshow-container mt-4 rounded-lg shadow-md">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+HEBOH+1" alt="Foto Heboh Gotong Royong 1" class="slide">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+HEBOH+2" alt="Foto Heboh Gotong Royong 2" class="slide">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+HEBOH+3" alt="Foto Heboh Gotong Royong 3" class="slide">
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute w-4 h-4 bg-gray-700 rounded-full -left-[41px] top-1 border-2 border-amber-500"></div>
+                                    <h5 class="text-lg font-semibold text-amber-300">✨ Malam Kebersamaan: Pesta Dadakan!</h5>
+                                    <p class="mt-1 text-gray-400">Api unggun, gitar, dan nyanyian yang tak kenal nada. Malam itu posko kita berubah jadi panggung konser dadakan yang paling meriah!</p>
+                                    <div class="slideshow-container mt-4 rounded-lg shadow-md">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+PESTA+1" alt="Foto Pesta di Posko 1" class="slide">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+PESTA+2" alt="Foto Pesta di Posko 2" class="slide">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="mengharukan-content" class="hidden">
+                            <div class="mt-8 ml-4 pl-8 border-l-2 border-amber-600/50 space-y-10 relative">
+                                <div class="relative">
+                                    <div class="absolute w-4 h-4 bg-gray-700 rounded-full -left-[41px] top-1 border-2 border-amber-500"></div>
+                                    <h5 class="text-lg font-semibold text-amber-300">❤️ Program Mengajar: Binar Mata Penuh Harapan</h5>
+                                    <p class="mt-1 text-gray-400">Melihat binar di mata mereka saat memahami sesuatu yang baru adalah bayaran termahal. Momen hening saat mereka serius belajar, tak akan terlupa.</p>
+                                    <div class="slideshow-container mt-4 rounded-lg shadow-md">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+TULUS+1" alt="Foto Tulus Mengajar 1" class="slide">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+TULUS+2" alt="Foto Tulus Mengajar 2" class="slide">
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute w-4 h-4 bg-gray-700 rounded-full -left-[41px] top-1 border-2 border-amber-500"></div>
+                                    <h5 class="text-lg font-semibold text-amber-300">🫂 Gotong Royong: Bahu-membahu Tanpa Kata</h5>
+                                    <p class="mt-1 text-gray-400">Ada kalanya, kebersamaan tak butuh banyak bicara. Cukup saling oper adukan semen dan berbagi minum, kami merasa menjadi bagian utuh dari desa.</p>
+                                    <div class="slideshow-container mt-4 rounded-lg shadow-md">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+BAHU-MEMBAHU+1" alt="Foto Bahu-membahu 1" class="slide">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+BAHU-MEMBAHU+2" alt="Foto Bahu-membahu 2" class="slide">
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute w-4 h-4 bg-gray-700 rounded-full -left-[41px] top-1 border-2 border-amber-500"></div>
+                                    <h5 class="text-lg font-semibold text-amber-300">🌙 Malam Kebersamaan: Berbagi Cerita Hati</h5>
+                                    <p class="mt-1 text-gray-400">Di bawah jutaan bintang, diiringi suara jangkrik, kita bukan lagi teman KKN, tapi keluarga. Momen saat kita berbagi cerita personal dan saling menguatkan.</p>
+                                    <div class="slideshow-container mt-4 rounded-lg shadow-md">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+SYAHDU+1" alt="Foto Malam Syahdu 1" class="slide">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+SYAHDU+2" alt="Foto Malam Syahdu 2" class="slide">
+                                        <img src="https://placehold.co/600x400/1a202c/fcd34d?text=FOTO+SYAHDU+3" alt="Foto Malam Syahdu 3" class="slide">
+                                    </div>
                                 </div>
                             </div>
                         </div>
