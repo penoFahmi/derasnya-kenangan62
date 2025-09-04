@@ -61,8 +61,9 @@
             z-index: 100;
         }
         
+        /* === PERUBAHAN CSS DIMULAI DI SINI === */
         #credits-container {
-            height: 350px;
+            height: 400px; /* Sedikit lebih tinggi untuk tampilan yang lebih baik */
             overflow: hidden;
             position: relative;
         }
@@ -70,7 +71,8 @@
             position: absolute;
             width: 100%;
             text-align: center;
-            animation: scroll-up 30s linear forwards;
+            /* Animasi dibuat lebih lambat (90 detik) dan berulang (infinite) */
+            animation: scroll-up 90s linear infinite;
             animation-play-state: paused;
         }
         
@@ -80,8 +82,10 @@
 
         @keyframes scroll-up {
             from { top: 100%; }
-            to { top: -120%; }
+            /* Nilai 'to' diperbesar untuk mengakomodasi konten yang lebih panjang */
+            to { top: -600%; } 
         }
+        /* === PERUBAHAN CSS SELESAI DI SINI === */
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300">
@@ -164,140 +168,118 @@
         </div>
     </section>
 
-    <!-- ================================================================= -->
-    <!-- PERUBAHAN TOTAL PADA BAGIAN PESAN DIMULAI (LENGKAP 19 ANGGOTA)    -->
-    <!-- ================================================================= -->
     <section id="messages" class="py-16 md:py-20">
         <div class="container mx-auto px-4 sm:px-6">
             <h3 class="text-4xl font-serif font-bold text-center mb-16 text-white" data-aos="fade-up">Goresan Rindu dari Kami</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- 1. Ridho -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/ridho.jpg" alt="Foto Ridho Riharda" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Ridho Riharda</h5>
                     <p class="text-sm text-amber-400 mb-4">Ketua Kelompok</p>
                     <p class="text-gray-400 italic">"Satu bulan yang terasa sekejap, namun kenangannya akan abadi. Terima kasih telah menjadi keluarga terbaik. Kalian luar biasa."</p>
                 </div>
-                <!-- 2. Cici -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="150">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/cici.jpg" alt="Foto Cici Nadira" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Cici Nadira</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Aku menemukan rumah di antara canda tawa kalian. Sungai Deras akan selalu menjadi tempatku untuk pulang. Sampai jumpa lagi, keluarga keduaku."</p>
                 </div>
-                <!-- 3. Muhajir -->
-                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/muhajir.jpg" alt="Foto Muhajir Kelana Saputra" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Muhajir Kelana Saputra</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Setiap detiknya berharga. Bangga jadi bagian dari kelompok 62!"</p>
                 </div>
-                <!-- 4. Rangga -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="250">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/rangga.jpg" alt="Foto Rangga Permana" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Rangga Permana</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Terima kasih untuk semua tawa dan cerita yang tak akan pernah kulupakan."</p>
                 </div>
-                <!-- 5. Rahma Vira -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/vira.jpg" alt="Foto Rahma Vira" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Rahma Vira</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Posko kita mungkin sederhana, tapi kehangatan di dalamnya melebihi istana. Rindu kalian semua."</p>
                 </div>
-                <!-- 6. Muhammad Yalqa Almuhtadi -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="150">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/yalqa.jpg" alt="Foto Muhammad Yalqa Almuhtadi" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">M. Yalqa Almuhtadi</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Dari orang asing menjadi saudara. Perjalanan yang luar biasa. Terima kasih, tim."</p>
                 </div>
-                <!-- 7. Siti Nurpatmawati -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/fatma.jpg" alt="Foto Siti Nurpatmawati" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Siti Nurpatmawati</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Setiap nasihat dan tawa kalian akan selalu kusimpan di hati. Jaga diri baik-baik ya."</p>
                 </div>
-                <!-- 8. Syahrir Alamsyah -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="250">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/sahril.jpg" alt="Foto Syahrir Alamsyah" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Syahrir Alamsyah</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Bukan tentang apa yang kita berikan, tapi tentang apa yang kita rasakan bersama. Itu yang terpenting."</p>
                 </div>
-                 <!-- 9. Fadillah Az Zahra -->
-                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
+                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/fadillah.jpg" alt="Foto Fadillah Az Zahra" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Fadillah Az Zahra</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Sebulan yang mengajarkan segalanya. Terima kasih untuk pelajaran dan kenangannya, teman-teman."</p>
                 </div>
-                <!-- 10. Dicky Amanta -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="150">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/dicky.jpg" alt="Foto Dicky Amanta" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Dicky Amanta</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Jangan lupakan cerita kita. Sampai bertemu di puncak kesuksesan, kawan!"</p>
                 </div>
-                <!-- 11. Dayang Nisa Anjani -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/dayang.jpg" alt="Foto Dayang Nisa Anjani" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Dayang Nisa Anjani</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Semoga jejak kecil kita di desa ini bisa menjadi sesuatu yang berarti. Rindu kalian."</p>
                 </div>
-                 <!-- 12. Habbija Vichandra -->
-                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="250">
+                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="250">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/habbija.jpg" alt="Foto Habbija Vichandra" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Habbija Vichandra</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Sebuah kehormatan bisa berjuang dan tertawa bersama kalian. Kelompok 62 selamanya!"</p>
                 </div>
-                <!-- 13. Khalishah Arsitawidya -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/khalishah.jpg" alt="Foto Khalishah Arsitawidya" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Khalishah Arsitawidya</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Ternyata benar, momen-momen kecil adalah yang paling kita rindukan. Terima kasih semuanya."</p>
                 </div>
-                <!-- 14. Alif Bainal Khafi -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="150">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/alif.jpg" alt="Foto Alif Bainal Khafi" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Alif Bainal Khafi</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Sungai Deras kini punya tempat spesial di hatiku, begitu juga kalian semua."</p>
                 </div>
-                 <!-- 15. Dwi Desi Wulansari -->
-                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/dwi.jpg" alt="Foto Dwi Desi Wulansari" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Dwi Desi Wulansari</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Untuk semua begadang, masak mie bareng, dan kerja keras kita. Itu semua tak ternilai."</p>
                 </div>
-                 <!-- 16. Muhammad Fajar -->
-                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="250">
+                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="250">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/fajar.jpg" alt="Foto Muhammad Fajar" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Muhammad Fajar</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Perjalanan ini mungkin berakhir, tapi persahabatan kita tidak akan pernah."</p>
                 </div>
-                 <!-- 17. Cinta Setyo Utami -->
-                <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
+                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/cinta.jpg" alt="Foto Cinta Setyo Utami" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Cinta Setyo Utami</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Terima kasih telah mewarnai salah satu bab terbaik dalam hidupku. Kalian hebat!"</p>
                 </div>
-                <!-- 18. Anti Hastuti -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="150">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/anti.jpg" alt="Foto Anti Hastuti" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Anti Hastuti</h5>
                     <p class="text-sm text-gray-400 mb-4">Anggota</p>
                     <p class="text-gray-400 italic">"Sebuah pengalaman yang mendewasakan. Bangga bisa berjuang bersama orang-orang hebat seperti kalian."</p>
                 </div>
-                <!-- 19. Peno -->
                 <div class="bg-gray-800/50 p-6 rounded-xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://placehold.co/200x200/f59e0b/FFFFFF?text=images/peno.jpg" alt="Foto Peno" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-4 border-gray-700">
                     <h5 class="font-bold text-white text-xl">Peno</h5>
@@ -334,36 +316,95 @@
 
     <section id="credits" class="py-16 md:py-20 bg-black">
         <div class="container mx-auto px-4 sm:px-6 text-center">
-            <h3 class="text-3xl font-serif font-bold text-center mb-10 text-white" data-aos="fade-up">19 Hati, 1 Cerita</h3>
+            <h3 class="text-3xl font-serif font-bold text-center mb-10 text-white" data-aos="fade-up">Dan Cerita Ini Dirajut Oleh...</h3>
             <div id="credits-container" data-aos="fade-up">
-                <div id="credits-list" class="text-gray-400 text-lg space-y-3">
-                    <p>ridho</p>
-                    <p>paijem</p>
-                    <p>rangga</p>
-                    <p>eiypa</p>
-                    <p>sahril</p>
-                    <p>babiteng</p>
-                    <p>lisa</p>
-                    <p>alip</p>
-                    <p>fajr</p>
-                    <p>axel</p>
-                    <p>sinta jojo</p>
-                    <p>bunda fatma</p>
-                    <p>vira</p>
-                    <p>dicky</p>
-                    <p>cici</p>
-                    <p>bang mus</p>
-                    <p>cimeng</p>
-                    <p>mbok anti</p>
-                    <p>penpen</p>
-                    <br>
-                    <p class="text-amber-400 font-bold text-xl mt-4">Kelompok 62</p>
-                    <p class="text-sm">KKU Sungai Deras 2025</p>
+                <div id="credits-list">
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Ridho</h4>
+                        <p class="text-amber-400 italic text-lg">Sang Nahkoda yang Menjaga Arah</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Cici</h4>
+                        <p class="text-amber-400 italic text-lg">Senyum Paling Tulus di Sudut Posko</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Bang Mus</h4>
+                        <p class="text-amber-400 italic text-lg">Penjaga Semangat di Kala Lelah</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Rangga</h4>
+                        <p class="text-amber-400 italic text-lg">Gelak Tawa yang Selalu Menular</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Vira</h4>
+                        <p class="text-amber-400 italic text-lg">Kelembutan yang Menenangkan Hati</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Axel</h4>
+                        <p class="text-amber-400 italic text-lg">Pemikir Cerdas di Balik Layar</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Bunda Patma</h4>
+                        <p class="text-amber-400 italic text-lg">Bunda Peri dengan Sejuta Perhatian</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Syahril</h4>
+                        <p class="text-amber-400 italic text-lg">Melodi Gitar di Tepi Senja</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Eiypa</h4>
+                        <p class="text-amber-400 italic text-lg">Energi Ceria yang Tak Pernah Padam</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Dicky</h4>
+                        <p class="text-amber-400 italic text-lg">Sang Humoris Pencair Suasana</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Cimeng</h4>
+                        <p class="text-amber-400 italic text-lg">Ketelitian dalam Setiap Karya</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Babiteng</h4>
+                        <p class="text-amber-400 italic text-lg">Sahabat Setia di Setiap Langkah</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Lisa</h4>
+                        <p class="text-amber-400 italic text-lg">Suara Bijak yang Selalu Didengar</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Alip</h4>
+                        <p class="text-amber-400 italic text-lg">Ketenangan di Tengah Riuh</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Paijem</h4>
+                        <p class="text-amber-400 italic text-lg">Tangan Terampil yang Selalu Membantu</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Fajr</h4>
+                        <p class="text-amber-400 italic text-lg">Sang Pengamat yang Penuh Makna</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Sinta Jojo</h4>
+                        <p class="text-amber-400 italic text-lg">Hati yang Tulus dalam Pengabdian</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Mbok Anti</h4>
+                        <p class="text-amber-400 italic text-lg">Kekuatan dan Ketegaran Kita Semua</p>
+                    </div>
+                    <div class="mb-10">
+                        <h4 class="text-2xl text-white font-semibold">Penpen</h4>
+                        <p class="text-amber-400 italic text-lg">Kawan yang Selalu Ada</p>
+                    </div>
+
+                    <div class="pt-24">
+                        <p class="text-amber-500 font-bold text-4xl font-serif">Kelompok 62</p>
+                        <p class="text-xl text-gray-300 mt-2">Sebuah keluarga yang terlahir di Sungai Deras</p>
+                        <p class="text-md mt-4 text-gray-500">2025</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
     <footer class="bg-gray-900">
         <div class="container mx-auto py-6 text-center text-gray-500">
             <p>&copy; 2025 | Untuk Selamanya, Kelompok 62. Dirangkai dengan rindu yang tak pernah padam ❤.</p>
@@ -371,7 +412,6 @@
     </footer>
 
     <audio id="background-music" loop>
-        <!-- PERBAIKAN: Mengganti ke file audio lokal -->
         <source src="audio/Banda-Neira-menampilkan-Gardika-Gigih-Sampai-Jadi-Debu.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
@@ -473,7 +513,7 @@
         const storyErrorDiv = document.getElementById('story-error');
         
         const apiKey = "AIzaSyAYMyop0CcZdwQwPjzD8BfujJAvMPsTVcI";
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
         async function callGeminiAPI(prompt, retries = 3, delay = 1000) {
             const systemPrompt = "Kamu adalah seorang penulis puitis yang bertugas merangkai kenangan indah menjadi sebuah cerita pendek yang nostalgia dan menyentuh. Gunakan bahasa yang indah dan bangkitkan emosi kebersamaan dalam 2-3 kalimat.";
@@ -527,4 +567,3 @@
     </script>
 </body>
 </html>
-
